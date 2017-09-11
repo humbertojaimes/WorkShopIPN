@@ -4,6 +4,6 @@ namespace WorkShopIPN.Storage
 {
 	public interface ISQLite
 	{
-		SQLiteConnection GetConnection();
+        SQLiteAsyncConnection GetConnection();
 	}
 }

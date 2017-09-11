@@ -75,9 +75,9 @@ namespace WorkShopIPN.ViewModel
 			SelectedEmployee = employee;
 		}
 
-		void SaveEmployee()
+        async Task SaveEmployee()
 		{
-			databaseManager.SaveValue<Employee>(SelectedEmployee);
+            await databaseManager.SaveValueAsync<Employee>(SelectedEmployee);
 		}
 
 		async Task TakePhoto()
@@ -105,7 +105,7 @@ namespace WorkShopIPN.ViewModel
 			}
 
 			SelectedEmployee.Photo = photo;
-			databaseManager.SaveValue<Employee>(SelectedEmployee);
+			await databaseManager.SaveValueAsync<Employee>(SelectedEmployee);
 		}
 
 

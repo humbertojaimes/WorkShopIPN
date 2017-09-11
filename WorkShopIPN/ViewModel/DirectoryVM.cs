@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using WorkShopIPN.Model;
 using WorkShopIPN.Storage;
 using Xamarin.Forms;
@@ -51,17 +52,18 @@ namespace WorkShopIPN
 
 
 		DataBaseManager databaseManager;
-		void LoadDirectory()
+		async Task LoadDirectory()
 		{
 			if (!IsBusy)
 			{
 				IsBusy = true;
 				Employees =
-					new ObservableCollection<Employee>(databaseManager.GetAllItems<Employee>());
+                    new ObservableCollection<Employee>(await databaseManager.GetAllItemsAsync<Employee>());
 
 				if (!Employees.Any())
 				{
 					EmployeeDirectory directory = new EmployeeDirectory();
+                    await directory.GenerateRandomDirectory();
 					Employees = directory.Employees;
 				}
 
@@ -76,11 +78,16 @@ namespace WorkShopIPN
 		public DirectoryVM()
 		{
 			databaseManager = new DataBaseManager();
-			LoadDirectory();
-			LoadDirectoryCommand = new Command(() => LoadDirectory(),
+            ExecuteLoadDirectory();
+            LoadDirectoryCommand = new Command(async () => await ExecuteLoadDirectory(),
 												 () => !IsBusy);
 
 		}
+
+        async Task ExecuteLoadDirectory(){
+
+            await LoadDirectory();
+        }
 
 	}
 }

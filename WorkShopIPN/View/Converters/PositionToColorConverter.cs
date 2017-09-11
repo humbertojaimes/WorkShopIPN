@@ -7,10 +7,6 @@ namespace WorkShopIPN
 {
 	public class PositionToColorConverter:IValueConverter
 	{
-		public PositionToColorConverter()
-		{
-		}
-
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			JobPosition position = (JobPosition)value;
@@ -21,11 +17,17 @@ namespace WorkShopIPN
 					color = Color.Red;
 					break;
 				case JobPosition.Operator:
-					color = Color.Yellow;
+                    color = Color.Brown;
 					break;
 				case JobPosition.Supervisor:
 					color = Color.Green;
 					break;
+                case JobPosition.Developer:
+                    color = Color.DarkRed;
+                    break;
+                case JobPosition.TechnicalSupport:
+                    color = Color.DarkMagenta;
+                    break;
 				default:
 					color = Color.Gray;
 					break;

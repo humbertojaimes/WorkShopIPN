@@ -8,7 +8,9 @@ namespace WorkShopIPN.Model
 	{
 		Excecutive,
 		Operator,
-		Supervisor
+		Supervisor,
+        TechnicalSupport,
+        Developer
 	}
 
 	public class Employee :INotifyPropertyChanged,IKeyObject
@@ -25,7 +27,7 @@ namespace WorkShopIPN.Model
 		{
 			get { return name; }
 			set { name = value;
-				Email = name + "@mycompany.com";
+                Email = name.Replace(" ","") + "@mycompany.com";
 				RaiseProperty();
 			}
 		}

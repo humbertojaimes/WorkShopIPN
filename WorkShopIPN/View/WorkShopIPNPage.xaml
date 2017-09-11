@@ -9,7 +9,7 @@
 	<ListView x:Name="LvEmployees" ItemsSource="{Binding Employees}">
 		<ListView.ItemTemplate>
 			<DataTemplate>
-				<ImageCell Text="{Binding Name}" Detail="{Binding Position}" ImageSource="{Binding Photo,Converter={StaticResource MyImageCvt}}}" />
+				<ImageCell TextColor="{Binding Position, Converter={StaticResource MyColorCvt}}" Text="{Binding Name}" Detail="{Binding Position}" ImageSource="{Binding Photo,Converter={StaticResource MyImageCvt}}}" />
 			</DataTemplate>
 		</ListView.ItemTemplate>
 	</ListView>
